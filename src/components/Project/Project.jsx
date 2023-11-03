@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TabContent = ({ projectName, date, description}) => {
+const Project = ({ projectName, date, description}) => {
     return (
         <div>
             <h1>{projectName}</h1>
@@ -10,4 +10,4 @@ const TabContent = ({ projectName, date, description}) => {
     );
 };
 
-export default TabContent;
+export default Project;
