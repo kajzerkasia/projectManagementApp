@@ -9,7 +9,7 @@
 
 @layer components {
     .aside-menu-container {
-        @apply flex flex-col items-start w-96 h-screen bg-black mt-10 text-almost-white rounded-tr-xl font-main;
+        @apply flex flex-col items-start w-96 min-w-aside-min-width h-screen bg-black mt-10 text-almost-white rounded-tr-xl font-main;
     }
 
     .aside-menu-h1 {

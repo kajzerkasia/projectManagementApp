@@ -4,8 +4,7 @@ import AddProject from "./components/AddProject/AddProject.jsx";
 function App() {
     return (
         <>
-            {/*<AsideMenu title="Your projects"/>*/}
-            <AddProject/>
+            <AsideMenu title="Your projects"/>
         </>
     );
 }
