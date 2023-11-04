@@ -6,3 +6,25 @@
     box-sizing: border-box;
     overflow: hidden;
 }
+
+@layer components {
+    .aside-menu-container {
+        @apply flex flex-col items-start w-96 h-screen bg-black mt-10 text-almost-white rounded-tr-xl font-main;
+    }
+
+    .aside-menu-h1 {
+        @apply uppercase font-bold pt-20 pb-12 text-2xl text-almost-white ml-8;
+    }
+
+    .aside-menu-button {
+        @apply w-36 mb-10 mx-0 py-2 bg-warm-gray ml-8 rounded text-aside-text-gray text-lg hover:bg-lighter-warm-gray hover:text-almost-white;
+    }
+
+    .aside-menu-tabs {
+        @apply flex flex-col ml-8 text-aside-text-gray;
+    }
+
+    .tab-button {
+        @apply hover:text-almost-white hover:bg-darker-warm-gray p-2 pr-36 text-lg;
+    }
+}
