@@ -1,10 +1,9 @@
-import AsideMenu from "./components/AsideMenu/AsideMenu.jsx";
-import AddProject from "./components/AddProject/AddProject.jsx";
+import MainView from "./components/MainView/MainView.jsx";
 
 function App() {
     return (
         <>
-            <AsideMenu title="Your projects"/>
+            <MainView/>
         </>
     );
 }
