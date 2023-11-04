@@ -17,14 +17,14 @@
     }
 
     .aside-menu-button {
-        @apply w-36 mb-10 mx-0 py-2 bg-warm-gray ml-8 rounded text-aside-text-gray text-lg hover:bg-lighter-warm-gray hover:text-almost-white;
+        @apply w-36 mb-10 mx-0 py-2 bg-warm-grey ml-8 rounded text-aside-text-grey text-lg hover:bg-lighter-warm-grey hover:text-almost-white;
     }
 
     .aside-menu-tabs {
-        @apply flex flex-col ml-8 text-aside-text-gray;
+        @apply flex flex-col ml-8 text-aside-text-grey;
     }
 
     .tab-button {
-        @apply hover:text-almost-white hover:bg-darker-warm-gray p-2 pr-36 text-lg;
+        @apply hover:text-almost-white hover:bg-darker-warm-grey p-2 pr-36 text-lg;
     }
 }
