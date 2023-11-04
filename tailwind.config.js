@@ -5,6 +5,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    minWidth: {
+      'aside-min-width': '24rem',
+    },
     extend: {
       fontFamily: {
         main: ['"Playpen Sans"', 'cursive'],
