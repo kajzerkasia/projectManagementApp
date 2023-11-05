@@ -12,11 +12,13 @@ const MainView = () => {
         setAddProjectIsOpen(isOpen => !isOpen);
     }
 
-    const [fieldsValue, setFieldsValue] = useState({
+    const initialFieldsValues = {
         title: '',
         description: '',
         dueDate: '',
-    })
+    };
+
+    const [fieldsValue, setFieldsValue] = useState(initialFieldsValues);
 
     const handleChange = (fieldIdentifier, newValue) => {
         setFieldsValue(prevFieldsValue => {
@@ -38,6 +40,10 @@ const MainView = () => {
         })
     };
 
+    const resetFields = () => {
+        setFieldsValue(initialFieldsValues);
+    };
+
     return (
         <div className="flex w-full h-screen">
             <AsideMenu
@@ -52,9 +58,12 @@ const MainView = () => {
                     onChange={handleChange}
                     onSaveClick={handleSaveClick}
                     onCancelClick={handleClick}
+                    onReset={resetFields}
                 />
                 :
-                <Home/>
+                <Home
+                    onCreateClick={handleClick}
+                />
             }
         </div>
     );
