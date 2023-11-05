@@ -45,7 +45,6 @@ const MainView = () => {
                 onClick={handleClick}
                 projectsTitle={fieldsValue}
                 tabButtons={tabButtons}
-                onTabButtonClick={handleSaveClick}
             />
             {addProjectIsOpen ?
                 <AddProject
