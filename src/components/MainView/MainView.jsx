@@ -18,11 +18,11 @@ const MainView = () => {
         dueDate: '',
     })
 
-    const handleChange = (inputIdentifier, newValue) => {
+    const handleChange = (fieldIdentifier, newValue) => {
         setFieldsValue(prevFieldsValue => {
             return {
                 ...prevFieldsValue,
-                [inputIdentifier]: newValue
+                [fieldIdentifier]: newValue
             }
         })
     }
@@ -51,6 +51,7 @@ const MainView = () => {
                     fieldsValue={fieldsValue}
                     onChange={handleChange}
                     onSaveClick={handleSaveClick}
+                    onCancelClick={handleClick}
                 />
                 :
                 <Home/>
