@@ -64,4 +64,20 @@
         @apply w-40 mb-10 mx-0 py-2 bg-darker-warm-grey ml-2 rounded text-almost-white hover:bg-black hover:text-white text-base mt-8;
     }
 
+    .project-container {
+        @apply flex h-screen flex-col justify-center items-start w-3/5;
+    }
+
+    .project-h1 {
+        @apply text-4xl font-bold pb-4 pl-4 ml-12 text-warm-grey;
+    }
+
+    .project-p {
+        @apply pl-4 pb-4 ml-12 text-light-warm-grey font-bold;
+    }
+
+    .project-border-bottom {
+        @apply bg-very-light-grey h-1 w-full ml-16 mt-2;
+    }
+
 }
