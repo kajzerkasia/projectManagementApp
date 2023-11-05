@@ -4,12 +4,6 @@ import Button from "../Button/Button.jsx";
 
 const AddProject = ({fieldsValue, onChange, onSaveClick}) => {
 
-    const handleSaveClick = () => {
-        const newTabButton = fieldsValue.title;
-        onSaveClick(newTabButton);
-    };
-
-
     return (
         <div className="add-project-container">
             <div className="inner-container">
@@ -21,7 +15,7 @@ const AddProject = ({fieldsValue, onChange, onSaveClick}) => {
                     </Button>
                     <Button
                         className="add-project-save-button"
-                        onClick={handleSaveClick}
+                        onClick={onSaveClick}
                     >
                         Save
                     </Button>
