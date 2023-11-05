@@ -32,7 +32,7 @@
         @apply flex h-screen flex-col justify-center items-center w-full;
     }
 
-    .add-project-inner-container {
+    .inner-container {
         @apply flex h-screen flex-col justify-center items-center w-3/5;
     }
 
@@ -50,6 +50,18 @@
 
     .project-input-and-textarea {
         @apply bg-very-light-grey text-light-warm-grey p-2 mb-4;
+    }
+
+    .img {
+        @apply w-16 h-16 object-contain mx-auto mb-4;
+    }
+
+    .home-h1 {
+        @apply font-bold text-light-warm-grey text-lg mb-4;
+    }
+
+    .home-button {
+        @apply w-40 mb-10 mx-0 py-2 bg-darker-warm-grey ml-2 rounded text-almost-white hover:bg-black hover:text-white text-base mt-8;
     }
 
 }

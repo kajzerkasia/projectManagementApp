@@ -5,7 +5,7 @@ import Button from "../Button/Button.jsx";
 const AddProject = () => {
     return (
         <div className="add-project-container">
-            <div className="add-project-inner-container">
+            <div className="inner-container">
                 <menu className="self-end">
                     <Button className="add-project-cancel-button">Cancel</Button>
                     <Button className="add-project-save-button">Save</Button>
