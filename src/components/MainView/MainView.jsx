@@ -54,6 +54,7 @@ const MainView = () => {
         });
 
         setProjectData(fieldsValue);
+        setAddProjectIsOpen(isOpen => !isOpen);
     };
 
     const resetFields = () => {
@@ -84,6 +85,9 @@ const MainView = () => {
                     date={projectData.dueDate}
                     description={projectData.description}
                 />
+                )}
+            {!addProjectIsOpen && !isTabButtonClicked && (
+                <Home onCreateClick={handleClick}/>
             )}
         </div>
     );
