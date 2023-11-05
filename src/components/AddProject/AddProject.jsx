@@ -2,7 +2,7 @@ import React from 'react';
 import ProjectInput from "../ProjectInput/ProjectInput.jsx";
 import Button from "../Button/Button.jsx";
 
-const AddProject = ({fieldsValue, onChange, onSaveClick}) => {
+const AddProject = ({ fieldsValue, onChange, onSaveClick, onCancelClick }) => {
 
     return (
         <div className="add-project-container">
@@ -10,6 +10,7 @@ const AddProject = ({fieldsValue, onChange, onSaveClick}) => {
                 <menu className="self-end">
                     <Button
                         className="add-project-cancel-button"
+                        onClick={onCancelClick}
                     >
                         Cancel
                     </Button>
