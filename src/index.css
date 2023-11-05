@@ -27,4 +27,20 @@
     .tab-button {
         @apply hover:text-almost-white hover:bg-darker-warm-grey p-2 pr-36 text-lg;
     }
+
+    .add-project-container {
+        @apply flex h-screen flex-col justify-center items-center w-full;
+    }
+
+    .add-project-inner-container {
+        @apply flex h-screen flex-col justify-center items-center w-3/5;
+    }
+
+    .add-project-cancel-button {
+        @apply w-20 mb-10 mx-0 py-2 bg-transparent ml-2 rounded text-darker-warm-grey hover:text-black text-base;
+    }
+
+    .add-project-save-button {
+        @apply w-20 mb-10 mx-0 py-2 bg-darker-warm-grey ml-2 rounded text-almost-white hover:bg-black hover:text-white text-base;
+    }
 }
