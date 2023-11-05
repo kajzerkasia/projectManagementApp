@@ -1,9 +1,9 @@
 import React from 'react';
 
-const TabButton = ({ text }) => {
+const TabButton = ({ children }) => {
     return (
         <button className="tab-button">
-            {text}
+            {children}
         </button>
     );
 };

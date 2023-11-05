@@ -25,7 +25,7 @@
     }
 
     .tab-button {
-        @apply hover:text-almost-white hover:bg-darker-warm-grey p-2 pr-36 text-lg;
+        @apply hover:text-almost-white hover:bg-darker-warm-grey p-2 pr-36 ml-8 text-lg;
     }
 
     .add-project-container {
