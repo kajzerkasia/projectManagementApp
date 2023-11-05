@@ -90,3 +90,5 @@ const MainView = () => {
 };
 
 export default MainView;
+
+// @TODO: display components correctly (ternary operators)
