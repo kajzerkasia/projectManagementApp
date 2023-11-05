@@ -1,13 +1,17 @@
 import React from 'react';
-import Tabs from "../Tabs/Tabs.jsx";
+import TabButton from "../TabButton/TabButton.jsx";
 
-export const AsideMenu = ({title, onClick}) => {
+export const AsideMenu = ({menuTitle, onClick, onTabButtonClick, tabButtons}) => {
 
     return (
             <div className="aside-menu-container">
-                <h1 className="aside-menu-h1">{title}</h1>
+                <h1 className="aside-menu-h1">{menuTitle}</h1>
                 <button className="aside-menu-button" onClick={onClick}>+ Add Project</button>
-                <Tabs className="aside-menu-tabs"/>
+                {tabButtons.map((buttonTitle, index) => (
+                    <TabButton key={index} onClick={() => onTabButtonClick(buttonTitle)}>
+                        {buttonTitle}
+                    </TabButton>
+                ))}
             </div>
     );
 };

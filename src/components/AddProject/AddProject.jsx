@@ -2,18 +2,56 @@ import React from 'react';
 import ProjectInput from "../ProjectInput/ProjectInput.jsx";
 import Button from "../Button/Button.jsx";
 
-const AddProject = () => {
+const AddProject = ({fieldsValue, onChange, onSaveClick}) => {
+
+    const handleSaveClick = () => {
+        const newTabButton = fieldsValue.title;
+        onSaveClick(newTabButton);
+    };
+
+
     return (
         <div className="add-project-container">
             <div className="inner-container">
                 <menu className="self-end">
-                    <Button className="add-project-cancel-button">Cancel</Button>
-                    <Button className="add-project-save-button">Save</Button>
+                    <Button
+                        className="add-project-cancel-button"
+                    >
+                        Cancel
+                    </Button>
+                    <Button
+                        className="add-project-save-button"
+                        onClick={handleSaveClick}
+                    >
+                        Save
+                    </Button>
                 </menu>
                 <main className="flex flex-col w-full">
-                    <ProjectInput labelText="title" type="text"/>
-                    <ProjectInput labelText="description" type="text" field="textarea"/>
-                    <ProjectInput labelText="due date" type="date"/>
+                    <ProjectInput
+                        labelText="title"
+                        type="text"
+                        fieldValue={fieldsValue.title}
+                        onChange={(event) =>
+                            onChange('title', event.target.value)
+                        }
+                    />
+                    <ProjectInput
+                        labelText="description"
+                        type="text"
+                        field="textarea"
+                        fieldValue={fieldsValue.description}
+                        onChange={(event) =>
+                            onChange('description', event.target.value)
+                        }
+                    />
+                    <ProjectInput
+                        labelText="due date"
+                        type="date"
+                        fieldValue={fieldsValue.dueDate}
+                        onChange={(event) =>
+                            onChange('dueDate', event.target.value)
+                        }
+                    />
                 </main>
             </div>
         </div>
