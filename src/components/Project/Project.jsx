@@ -8,8 +8,8 @@ const Project = ({projectName, date, description}) => {
             <div className="self-end pr-4">
                 <Button>Delete</Button>
             </div>
-            <h1 className="text-4xl font-bold pm-4 pl-4 ml-12 text-warm-grey">{projectName}</h1>
-            <p className="p-4 ml-12 text-light-warm-grey font-bold">{date}</p>
+            <h1 className="text-4xl font-bold pb-4 pl-4 ml-12 text-warm-grey">{projectName}</h1>
+            <p className="pl-4 pb-4 ml-12 text-light-warm-grey font-bold">{date}</p>
             <p className="pl-4 pb-4 ml-12">{description}</p>
             <div className="bg-very-light-grey h-1 w-full ml-16 mt-2"></div>
         </div>
