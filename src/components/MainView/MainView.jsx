@@ -54,7 +54,9 @@ const MainView = () => {
                     onCancelClick={handleClick}
                 />
                 :
-                <Home/>
+                <Home
+                    onCreateClick={handleClick}
+                />
             }
         </div>
     );
