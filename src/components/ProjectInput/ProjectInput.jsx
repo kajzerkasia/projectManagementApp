@@ -5,7 +5,13 @@ const ProjectInput = ({ labelText, type, field, onChange, fieldValue, ...props})
         <>
             <label className="project-input-label">{labelText}</label>
             {field === 'textarea' ?
-                <textarea className="project-input-and-textarea"></textarea>
+                <textarea
+                    className="project-input-and-textarea"
+                    onChange={onChange}
+                    value={fieldValue}
+                    {...props}
+                >
+                </textarea>
                 :
                 <input
                     type={type}
