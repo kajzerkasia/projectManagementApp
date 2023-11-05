@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Project = ({ projectName, date, description}) => {
+const Project = ({ projectName, date, description }) => {
+
     return (
         <div>
             <h1>{projectName}</h1>
