@@ -43,4 +43,13 @@
     .add-project-save-button {
         @apply w-20 mb-10 mx-0 py-2 bg-darker-warm-grey ml-2 rounded text-almost-white hover:bg-black hover:text-white text-base;
     }
+
+    .project-input-label {
+        @apply uppercase text-light-warm-grey font-bold;
+    }
+
+    .project-input-and-textarea {
+        @apply bg-very-light-grey text-light-warm-grey p-2 mb-4;
+    }
+
 }

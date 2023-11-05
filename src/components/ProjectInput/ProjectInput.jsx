@@ -3,11 +3,11 @@ import React from 'react';
 const ProjectInput = ({ labelText, type, field}) => {
     return (
         <>
-            <label className="uppercase text-light-warm-grey font-bold">{labelText}</label>
+            <label className="project-input-label">{labelText}</label>
             {field === 'textarea' ?
-                <textarea className="bg-very-light-grey text-light-warm-grey p-2 mb-4"></textarea>
+                <textarea className="project-input-and-textarea"></textarea>
                 :
-                <input type={type} className="bg-very-light-grey text-light-warm-grey p-2 mb-4"/>
+                <input type={type} className="project-input-and-textarea"/>
             }
         </>
     );
