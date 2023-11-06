@@ -10,6 +10,7 @@ const MainView = () => {
     const [addProjectIsOpen, setAddProjectIsOpen] = useState(false);
     const [isTabButtonClicked, setIsTabButtonClicked] = useState(false);
     const [selectedTabIndex, setSelectedTabIndex] = useState(null);
+    const [projects, setProjects] = useState([]);
 
     const handleTabButtonClick = (index) => {
         setSelectedTabIndex(index);
@@ -26,11 +27,6 @@ const MainView = () => {
         dueDate: '',
     };
 
-    const [projectData, setProjectData] = useState({
-        title: '',
-        description: '',
-        dueDate: '',
-    });
 
     const [fieldsValue, setFieldsValue] = useState(initialFieldsValues);
 
@@ -53,8 +49,14 @@ const MainView = () => {
             return updatedTabButtons;
         });
 
-        setProjectData(fieldsValue);
-        setAddProjectIsOpen(isOpen => !isOpen);
+        setProjects(prevProjects => [
+            ...prevProjects,
+            {
+                title: fieldsValue.title,
+                description: fieldsValue.description,
+                dueDate: fieldsValue.dueDate,
+            },
+        ]);
     };
 
     const resetFields = () => {
@@ -82,8 +84,8 @@ const MainView = () => {
             {isTabButtonClicked && !addProjectIsOpen && selectedTabIndex !== null && (
                 <Project
                     projectName={tabButtons[selectedTabIndex]}
-                    date={projectData.dueDate}
-                    description={projectData.description}
+                    date={projects[selectedTabIndex].dueDate}
+                    description={projects[selectedTabIndex].description}
                 />
                 )}
             {!addProjectIsOpen && !isTabButtonClicked && (
@@ -96,3 +98,4 @@ const MainView = () => {
 export default MainView;
 
 // @TODO: display components correctly (ternary operators)
+// @TODO: display correct separate data for every project
