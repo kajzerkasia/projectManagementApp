@@ -1,4 +1,4 @@
-const INITIAL_FIELDS = {
+export const INITIAL_FIELDS = {
     title: '',
     description: '',
     dueDate: '',
