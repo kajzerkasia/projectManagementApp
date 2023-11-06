@@ -13,11 +13,12 @@ const MainView = () => {
 
     const handleSelect = selectedButton => {
         setSelectedButton(selectedButton);
+        setAddProjectIsOpen(false);
     };
 
-    const handleClick = () => {
+    const toggleAddProject = () => {
         setAddProjectIsOpen(isOpen => !isOpen);
-    }
+    };
 
     const initialFieldsValues = {
         title: '',
@@ -65,17 +66,17 @@ const MainView = () => {
         <div className="flex w-full h-screen">
             <AsideMenu
                 menuTitle="Your projects"
-                onClick={handleClick}
                 onClickTabButton={handleSelect}
                 tabButtons={tabButtons}
                 selectedButton={selectedButton}
+                toggleAddProject={toggleAddProject}
             />
             {addProjectIsOpen &&
                 <AddProject
                     fieldsValue={fieldsValue}
                     onChange={handleChange}
                     onSaveClick={handleSaveClick}
-                    onCancelClick={handleClick}
+                    onCancelClick={toggleAddProject}
                     onReset={resetFields}
                 />
             }
@@ -87,12 +88,10 @@ const MainView = () => {
                 />
             )}
             {!addProjectIsOpen && selectedButton === null && (
-                <Home onCreateClick={handleClick}/>
+                <Home onCreateClick={toggleAddProject}/>
             )}
         </div>
     );
 };
 
 export default MainView;
-
-// @TODO: display components correctly (ternary operators)
