@@ -8,13 +8,11 @@ const MainView = () => {
 
     const [tabButtons, setTabButtons] = useState([]);
     const [addProjectIsOpen, setAddProjectIsOpen] = useState(false);
-    const [isTabButtonClicked, setIsTabButtonClicked] = useState(false);
-    const [selectedTabIndex, setSelectedTabIndex] = useState(null);
     const [projects, setProjects] = useState([]);
+    const [selectedButton, setSelectedButton] = useState(null);
 
-    const handleTabButtonClick = (index) => {
-        setSelectedTabIndex(index);
-        setIsTabButtonClicked(isClicked => !isClicked);
+    const handleSelect = selectedButton => {
+        setSelectedButton(selectedButton);
     };
 
     const handleClick = () => {
@@ -68,9 +66,9 @@ const MainView = () => {
             <AsideMenu
                 menuTitle="Your projects"
                 onClick={handleClick}
-                projectsTitle={fieldsValue}
+                onClickTabButton={handleSelect}
                 tabButtons={tabButtons}
-                onTabButtonClick={handleTabButtonClick}
+                selectedButton={selectedButton}
             />
             {addProjectIsOpen &&
                 <AddProject
@@ -81,14 +79,14 @@ const MainView = () => {
                     onReset={resetFields}
                 />
             }
-            {isTabButtonClicked && !addProjectIsOpen && selectedTabIndex !== null && (
+            {!addProjectIsOpen && selectedButton !== null && selectedButton >= 0 && selectedButton < projects.length && (
                 <Project
-                    projectName={tabButtons[selectedTabIndex]}
-                    date={projects[selectedTabIndex].dueDate}
-                    description={projects[selectedTabIndex].description}
+                    projectName={tabButtons[selectedButton]}
+                    date={projects[selectedButton].dueDate}
+                    description={projects[selectedButton].description}
                 />
-                )}
-            {!addProjectIsOpen && !isTabButtonClicked && (
+            )}
+            {!addProjectIsOpen && selectedButton === null && (
                 <Home onCreateClick={handleClick}/>
             )}
         </div>
@@ -98,4 +96,3 @@ const MainView = () => {
 export default MainView;
 
 // @TODO: display components correctly (ternary operators)
-// @TODO: display correct separate data for every project
