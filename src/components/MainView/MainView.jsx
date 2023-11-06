@@ -3,6 +3,7 @@ import AsideMenu from "../AsideMenu/AsideMenu.jsx";
 import AddProject from "../AddProject/AddProject.jsx";
 import Home from "../Home/Home.jsx";
 import Project from "../Project/Project.jsx";
+import { INITIAL_FIELDS } from '../../constants/data.js';
 
 const MainView = () => {
 
