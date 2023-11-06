@@ -10,6 +10,7 @@ const MainView = () => {
     const [addProjectIsOpen, setAddProjectIsOpen] = useState(false);
     const [projects, setProjects] = useState([]);
     const [selectedButton, setSelectedButton] = useState(null);
+    const [fieldsValue, setFieldsValue] = useState(INITIAL_FIELDS);
 
     const handleSelect = selectedButton => {
         setSelectedButton(selectedButton);
@@ -20,14 +21,6 @@ const MainView = () => {
         setAddProjectIsOpen(isOpen => !isOpen);
     };
 
-    const initialFieldsValues = {
-        title: '',
-        description: '',
-        dueDate: '',
-    };
-
-
-    const [fieldsValue, setFieldsValue] = useState(initialFieldsValues);
 
     const handleChange = (fieldIdentifier, newValue) => {
         setFieldsValue(prevFieldsValue => {
@@ -59,7 +52,7 @@ const MainView = () => {
     };
 
     const resetFields = () => {
-        setFieldsValue(initialFieldsValues);
+        setFieldsValue(INITIAL_FIELDS);
     };
 
     return (
