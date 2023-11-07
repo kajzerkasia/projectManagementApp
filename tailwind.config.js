@@ -14,6 +14,7 @@ export default {
       },
       colors: {
         'almost-white': '#fceae4',
+        'the-lightest-grey': '#eee9e9',
         'very-light-grey': '#e0dada',
         'light-warm-grey': '#7b6e6e',
         'lighter-warm-grey': '#504747',
