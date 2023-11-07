@@ -1,8 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ProjectInput from "../ProjectInput/ProjectInput.jsx";
 import Button from "../Button/Button.jsx";
+import {INITIAL_FIELDS} from "../../constants/data.js";
 
-const AddProject = ({ fieldsValue, onChange, onSaveClick, onCancelClick, onReset }) => {
+const AddProject = ({ onSaveClick, onCancelClick }) => {
+    const [fieldsValue, setFieldsValue] = useState(INITIAL_FIELDS);
+
+    const handleChange = (fieldIdentifier, newValue) => {
+        setFieldsValue(prevFieldsValue => ({
+            ...prevFieldsValue,
+            [fieldIdentifier]: newValue
+        }));
+    };
+
+    const resetFields = () => {
+        setFieldsValue(INITIAL_FIELDS);
+    };
+
+    const handleSave = () => {
+        onSaveClick(fieldsValue);
+    };
+
 
     return (
         <div className="add-project-container">
@@ -12,7 +30,7 @@ const AddProject = ({ fieldsValue, onChange, onSaveClick, onCancelClick, onReset
                         className="add-project-cancel-button"
                         onClick={() => {
                             onCancelClick()
-                            onReset()
+                            resetFields();
                         }}
                     >
                         Cancel
@@ -20,8 +38,8 @@ const AddProject = ({ fieldsValue, onChange, onSaveClick, onCancelClick, onReset
                     <Button
                         className="add-project-save-button"
                         onClick={() => {
-                            onSaveClick()
-                            onReset()
+                            handleSave();
+                            resetFields();
                         }}
                     >
                         Save
@@ -33,7 +51,7 @@ const AddProject = ({ fieldsValue, onChange, onSaveClick, onCancelClick, onReset
                         type="text"
                         fieldValue={fieldsValue.title}
                         onChange={(event) =>
-                            onChange('title', event.target.value)
+                            handleChange('title', event.target.value)
                         }
                     />
                     <ProjectInput
@@ -42,7 +60,7 @@ const AddProject = ({ fieldsValue, onChange, onSaveClick, onCancelClick, onReset
                         field="textarea"
                         fieldValue={fieldsValue.description}
                         onChange={(event) =>
-                            onChange('description', event.target.value)
+                            handleChange('description', event.target.value)
                         }
                     />
                     <ProjectInput
@@ -50,7 +68,7 @@ const AddProject = ({ fieldsValue, onChange, onSaveClick, onCancelClick, onReset
                         type="date"
                         fieldValue={fieldsValue.dueDate}
                         onChange={(event) =>
-                            onChange('dueDate', event.target.value)
+                            handleChange('dueDate', event.target.value)
                         }
                     />
                 </main>

@@ -3,7 +3,6 @@ import AsideMenu from "../AsideMenu/AsideMenu.jsx";
 import AddProject from "../AddProject/AddProject.jsx";
 import Home from "../Home/Home.jsx";
 import Project from "../Project/Project.jsx";
-import { INITIAL_FIELDS } from '../../constants/data.js';
 
 const MainView = () => {
 
@@ -11,7 +10,6 @@ const MainView = () => {
     const [addProjectIsOpen, setAddProjectIsOpen] = useState(false);
     const [projects, setProjects] = useState([]);
     const [selectedButton, setSelectedButton] = useState(null);
-    const [fieldsValue, setFieldsValue] = useState(INITIAL_FIELDS);
 
     const handleSelect = selectedButton => {
         setSelectedButton(selectedButton);
@@ -22,38 +20,17 @@ const MainView = () => {
         setAddProjectIsOpen(isOpen => !isOpen);
     };
 
-
-    const handleChange = (fieldIdentifier, newValue) => {
-        setFieldsValue(prevFieldsValue => {
-            return {
-                ...prevFieldsValue,
-                [fieldIdentifier]: newValue
-            }
-        })
-    }
-
-    const handleSaveClick = () => {
-
-        const newTabButton = fieldsValue.title;
-
-        setTabButtons((prevTabButtons) => {
-            const updatedTabButtons = [...prevTabButtons];
-            updatedTabButtons.push(newTabButton);
-            return updatedTabButtons;
-        });
-
-        setProjects(prevProjects => [
+    const handleSaveClick = (newProject) => {
+        const { title, description, dueDate } = newProject;
+        setTabButtons((prevTabButtons) => [...prevTabButtons, title]);
+        setProjects((prevProjects) => [
             ...prevProjects,
             {
-                title: fieldsValue.title,
-                description: fieldsValue.description,
-                dueDate: fieldsValue.dueDate,
+                title,
+                description,
+                dueDate,
             },
         ]);
-    };
-
-    const resetFields = () => {
-        setFieldsValue(INITIAL_FIELDS);
     };
 
     return (
@@ -66,13 +43,7 @@ const MainView = () => {
                 toggleAddProject={toggleAddProject}
             />
             {addProjectIsOpen &&
-                <AddProject
-                    fieldsValue={fieldsValue}
-                    onChange={handleChange}
-                    onSaveClick={handleSaveClick}
-                    onCancelClick={toggleAddProject}
-                    onReset={resetFields}
-                />
+                <AddProject onSaveClick={handleSaveClick} onCancelClick={toggleAddProject} />
             }
             {!addProjectIsOpen && selectedButton !== null && selectedButton >= 0 && selectedButton < projects.length && (
                 <Project
@@ -89,3 +60,5 @@ const MainView = () => {
 };
 
 export default MainView;
+
+// @TODO Split this component into smaller components - maybe move AsideMenu logic to this component or other component. Generally - split components depending on shared states
