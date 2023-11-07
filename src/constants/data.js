@@ -3,3 +3,7 @@ export const INITIAL_FIELDS = {
     description: '',
     dueDate: '',
 };
+
+export const INITIAL_TASK = {
+    task: '',
+}

@@ -53,7 +53,7 @@ const MainView = () => {
                     date={projects[selectedButton].dueDate}
                     description={projects[selectedButton].description}
                 />
-                    <Tasks/>
+                    <Tasks labelText="Tasks"/>
                 </div>
 
             )}
