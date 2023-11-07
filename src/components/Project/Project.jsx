@@ -4,7 +4,7 @@ import Button from "../Button/Button.jsx";
 const Project = ({projectName, date, description}) => {
 
     return (
-        <div className="project-container ">
+        <div className="project-container">
             <div className="self-end pr-4">
                 <Button>Delete</Button>
             </div>

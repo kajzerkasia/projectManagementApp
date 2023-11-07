@@ -3,6 +3,7 @@ import AsideMenu from "../AsideMenu/AsideMenu.jsx";
 import AddProject from "../AddProject/AddProject.jsx";
 import Home from "../Home/Home.jsx";
 import Project from "../Project/Project.jsx";
+import Tasks from "../Tasks/Tasks.jsx";
 
 const MainView = () => {
 
@@ -46,11 +47,15 @@ const MainView = () => {
                 <AddProject onSaveClick={handleSaveClick} onCancelClick={toggleAddProject} />
             }
             {!addProjectIsOpen && selectedButton !== null && selectedButton >= 0 && selectedButton < projects.length && (
+                <div className="flex flex-col w-full">
                 <Project
                     projectName={tabButtons[selectedButton]}
                     date={projects[selectedButton].dueDate}
                     description={projects[selectedButton].description}
                 />
+                    <Tasks/>
+                </div>
+
             )}
             {!addProjectIsOpen && selectedButton === null && (
                 <Home onCreateClick={toggleAddProject}/>
@@ -60,5 +65,3 @@ const MainView = () => {
 };
 
 export default MainView;
-
-// @TODO Split this component into smaller components - maybe move AsideMenu logic to this component or other component. Generally - split components depending on shared states

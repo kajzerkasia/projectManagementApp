@@ -65,7 +65,7 @@
     }
 
     .project-container {
-        @apply flex h-screen flex-col justify-center items-start w-3/5;
+        @apply flex h-screen flex-col justify-end items-start w-3/5 mt-8;
     }
 
     .project-h1 {
