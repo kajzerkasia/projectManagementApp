@@ -58,5 +58,3 @@ const Tasks = ({labelText}) => {
 };
 
 export default Tasks;
-
-// @TODO: Move styles to index.css, fix display of tasks
