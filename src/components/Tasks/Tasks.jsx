@@ -52,7 +52,7 @@ const Tasks = ({labelText}) => {
                         Add Task
                     </Button>
                 </div>
-                <div className="added-tasks">
+                <div className="">
                     {tasks.map((task, index) => (
                         <Task
                             key={index}
