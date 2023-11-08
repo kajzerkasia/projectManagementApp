@@ -25,13 +25,13 @@ const Tasks = ({labelText}) => {
     };
 
     return (
-        <div className="flex h-screen flex-col items-start w-3/5 pl-4 ml-12 mb-32">
+        <div className="tasks-container">
             <div className="flex flex-col">
-                <label className="text-4xl font-bold text-warm-grey my-4">{labelText}</label>
+                <label className="tasks-label">{labelText}</label>
                 <div className="mb-12">
                     <input
                         type="text"
-                        className="bg-very-light-grey w-96 p-1"
+                        className="tasks-input"
                         value={taskInputValue.task}
                         onChange={(event) =>
                             handleChange('task', event.target.value)
@@ -44,9 +44,12 @@ const Tasks = ({labelText}) => {
                         Add Task
                     </Button>
                 </div>
-                <div className="bg-the-lightest-grey w-full p-4">
+                <div className="added-tasks">
                     {tasks.map((task, index) => (
-                        <Task key={index} taskName={task}/>
+                        <Task
+                            key={index}
+                            taskName={task}
+                        />
                     ))}
                 </div>
             </div>

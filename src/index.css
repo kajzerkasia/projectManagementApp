@@ -80,4 +80,19 @@
         @apply bg-very-light-grey h-1 w-full ml-16 mt-2;
     }
 
+    .tasks-container {
+        @apply flex h-screen flex-col items-start w-3/5 pl-4 ml-12 mb-32;
+    }
+
+    .tasks-label {
+        @apply text-4xl font-bold text-warm-grey my-4;
+    }
+
+    .tasks-input {
+        @apply bg-very-light-grey w-96 p-1;
+    }
+
+    .added-tasks {
+        @apply bg-the-lightest-grey w-full p-4;
+    }
 }
