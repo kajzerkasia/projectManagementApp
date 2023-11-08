@@ -4,7 +4,6 @@
 
 * {
     box-sizing: border-box;
-    overflow: hidden;
 }
 
 @layer components {
@@ -65,7 +64,7 @@
     }
 
     .project-container {
-        @apply flex h-screen flex-col justify-end items-start w-3/5 mt-8;
+        @apply flex h-screen flex-col justify-center items-start w-3/5 mt-8;
     }
 
     .project-h1 {
@@ -81,11 +80,11 @@
     }
 
     .tasks-container {
-        @apply flex h-screen flex-col items-start w-3/5 pl-4 ml-12 mb-32;
+        @apply flex h-screen flex-col w-3/5 pl-4 ml-12;
     }
 
     .tasks-label {
-        @apply text-4xl font-bold text-warm-grey my-4;
+        @apply text-4xl font-bold text-warm-grey py-4;
     }
 
     .tasks-input {
