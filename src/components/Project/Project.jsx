@@ -1,12 +1,12 @@
 import React from 'react';
 import Button from "../Button/Button.jsx";
 
-const Project = ({projectName, date, description}) => {
+const Project = ({projectName, date, description, onDeleteClick}) => {
 
     return (
         <div className="project-container">
             <div className="self-end pr-4">
-                <Button>Delete</Button>
+                <Button onClick={onDeleteClick}>Delete</Button>
             </div>
             <h1 className="project-h1">{projectName}</h1>
             <p className="project-p">{date}</p>

@@ -34,6 +34,20 @@ const MainView = () => {
         ]);
     };
 
+    const handleDeleteClick = () => {
+        if (selectedButton !== null) {
+            const updatedTabButtons = [...tabButtons];
+            const updatedProjects = [...projects];
+
+            updatedTabButtons.splice(selectedButton, 1);
+            updatedProjects.splice(selectedButton, 1);
+
+            setTabButtons(updatedTabButtons);
+            setProjects(updatedProjects);
+            setSelectedButton(null);
+        }
+    };
+
     return (
         <div className="flex w-full h-screen">
             <AsideMenu
@@ -52,6 +66,7 @@ const MainView = () => {
                     projectName={tabButtons[selectedButton]}
                     date={projects[selectedButton].dueDate}
                     description={projects[selectedButton].description}
+                    onDeleteClick={handleDeleteClick}
                 />
                     <Tasks labelText="Tasks"/>
                 </div>
@@ -65,3 +80,5 @@ const MainView = () => {
 };
 
 export default MainView;
+
+// @TODO: Deleting tasks
