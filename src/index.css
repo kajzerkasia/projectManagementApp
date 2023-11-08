@@ -92,6 +92,6 @@
     }
 
     .added-tasks {
-        @apply bg-the-lightest-grey w-full p-4;
+        @apply flex justify-between bg-the-lightest-grey w-full p-4;
     }
 }
