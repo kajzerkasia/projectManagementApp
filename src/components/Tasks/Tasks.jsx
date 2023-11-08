@@ -17,6 +17,14 @@ const Tasks = ({labelText}) => {
         resetInputValue();
     }
 
+    const handleDeleteClick = (index) => {
+        setTasks((prevTasks) => {
+            const updatedTasks = [...prevTasks];
+            updatedTasks.splice(index, 1);
+            return updatedTasks;
+        });
+    };
+
     const handleChange = (fieldIdentifier, newValue) => {
         setTaskInputValue(prevInputValue => ({
             ...prevInputValue,
@@ -49,6 +57,7 @@ const Tasks = ({labelText}) => {
                         <Task
                             key={index}
                             taskName={task}
+                            onDelete={() => handleDeleteClick(index)}
                         />
                     ))}
                 </div>
