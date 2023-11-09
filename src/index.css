@@ -52,7 +52,7 @@
     }
 
     .project-input-and-textarea {
-        @apply bg-very-light-grey text-light-warm-grey p-2 mb-4;
+        @apply bg-very-light-grey text-light-warm-grey p-2 mb-4 border-b-2 border-aside-text-grey focus:outline-none focus:border-light-warm-grey;
     }
 
     .img {
