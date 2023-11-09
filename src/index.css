@@ -27,6 +27,10 @@
         @apply hover:text-almost-white hover:bg-darker-warm-grey p-2 pr-36 ml-8 text-lg;
     }
 
+    .active {
+        @apply bg-darker-warm-grey;
+    }
+
     .add-project-container {
         @apply flex h-screen flex-col justify-center items-center w-full;
     }
