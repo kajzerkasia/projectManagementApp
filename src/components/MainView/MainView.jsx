@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import AsideMenu from "../AsideMenu/AsideMenu.jsx";
 import AddProject from "../AddProject/AddProject.jsx";
-import Home from "../Home/Home.jsx";
+import NoProjectSelected from "../NoProjectSelected/NoProjectSelected.jsx";
 import Project from "../Project/Project.jsx";
 import Tasks from "../Tasks/Tasks.jsx";
 
@@ -73,7 +73,7 @@ const MainView = () => {
 
             )}
             {!addProjectIsOpen && selectedButton === null && (
-                <Home onCreateClick={toggleAddProject}/>
+                <NoProjectSelected onCreateClick={toggleAddProject}/>
             )}
         </div>
     );
