@@ -24,7 +24,7 @@
     }
 
     .tab-button {
-        @apply hover:text-almost-white hover:bg-darker-warm-grey p-2 pr-36 ml-8 text-lg;
+        @apply hover:text-almost-white hover:bg-darker-warm-grey p-2 ml-8 text-lg mb-1 w-4/5 text-left;
     }
 
     .active {
