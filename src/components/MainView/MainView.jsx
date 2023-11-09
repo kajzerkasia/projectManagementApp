@@ -80,5 +80,3 @@ const MainView = () => {
 };
 
 export default MainView;
-
-// @TODO: Deleting tasks
