@@ -2,7 +2,7 @@ import React from 'react';
 import TabButton from "../TabButton/TabButton.jsx";
 import Button from "../Button/Button.jsx";
 
-export const AsideMenu = ({menuTitle, onClickTabButton, toggleAddProject, tabButtons, selectedButton }) => {
+export const AsideMenu = ({menuTitle, onClickTabButton, toggleAddProject, tabButtons, selectedButton}) => {
 
     const handleTabButtonClick = (index) => {
 
