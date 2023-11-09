@@ -2,7 +2,7 @@ import React from 'react';
 import homePageIcon from '../../assets/no-projects.png';
 import Button from "../Button/Button.jsx";
 
-const Home = ({ onCreateClick }) => {
+const NoProjectSelected = ({ onCreateClick }) => {
     return (
         <div className="inner-container">
             <img src={homePageIcon} alt="No Projects Icon" className="img"/>
@@ -13,4 +13,4 @@ const Home = ({ onCreateClick }) => {
     );
 };
 
-export default Home;
+export default NoProjectSelected;
