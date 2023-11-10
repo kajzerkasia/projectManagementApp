@@ -57,7 +57,7 @@ const Tasks = ({labelText}) => {
                         <Task
                             key={index}
                             taskName={task}
-                            onDelete={() => handleDeleteClick(index)}
+                            onClick={() => handleDeleteClick(index)}
                         />
                     ))}
                 </div>
@@ -67,3 +67,5 @@ const Tasks = ({labelText}) => {
 };
 
 export default Tasks;
+
+// @TODO: Separate tasks from different projects
