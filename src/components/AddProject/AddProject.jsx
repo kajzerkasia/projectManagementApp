@@ -49,7 +49,7 @@ const AddProject = ({ onSaveClick, onCancelClick }) => {
                     <ProjectInput
                         labelText="title"
                         type="text"
-                        fieldValue={fieldsValue.title}
+                        value={fieldsValue.title}
                         onChange={(event) =>
                             handleChange('title', event.target.value)
                         }
@@ -58,7 +58,7 @@ const AddProject = ({ onSaveClick, onCancelClick }) => {
                         labelText="description"
                         type="text"
                         field="textarea"
-                        fieldValue={fieldsValue.description}
+                        value={fieldsValue.description}
                         onChange={(event) =>
                             handleChange('description', event.target.value)
                         }
@@ -66,7 +66,7 @@ const AddProject = ({ onSaveClick, onCancelClick }) => {
                     <ProjectInput
                         labelText="due date"
                         type="date"
-                        fieldValue={fieldsValue.dueDate}
+                        value={fieldsValue.dueDate}
                         onChange={(event) =>
                             handleChange('dueDate', event.target.value)
                         }
