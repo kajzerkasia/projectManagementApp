@@ -1,15 +1,16 @@
 import React from 'react';
+import Button from "../Button/Button.jsx";
 
-const Task = ({taskName, onDelete}) => {
+const Task = ({taskName, ...props}) => {
     return (
         <div className="added-tasks">
             <p>{taskName}</p>
-            <button
+            <Button
+                {...props}
                 className="ml-4"
-                onClick={onDelete}
             >
                 Clear
-            </button>
+            </Button>
         </div>
     );
 };
