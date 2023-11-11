@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Input from "../Input/Input.jsx";
 import Button from "../Button/Button.jsx";
 import {INITIAL_FIELDS} from "../../constants/data.js";
+import Container from "../Container/Container.jsx";
 
 const AddProject = ({ onSaveClick, onCancelClick }) => {
     const [fieldsValue, setFieldsValue] = useState(INITIAL_FIELDS);
@@ -24,7 +25,7 @@ const AddProject = ({ onSaveClick, onCancelClick }) => {
 
     return (
         <div className="add-project-container">
-            <div className="inner-container">
+            <Container>
                 <menu className="self-end">
                     <Button
                         className="add-project-cancel-button"
@@ -72,7 +73,7 @@ const AddProject = ({ onSaveClick, onCancelClick }) => {
                         }
                     />
                 </main>
-            </div>
+            </Container>
         </div>
     );
 };
