@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import {INITIAL_TASK} from "../../constants/data.js";
 import Button from "../Button/Button.jsx";
 import Task from "../Task/Task.jsx";
+import Input from "../Input/Input.jsx";
 
-const Tasks = ({labelText}) => {
+const Tasks = ({ labelText }) => {
     const [taskInputValue, setTaskInputValue] = useState(INITIAL_TASK);
     const [tasks, setTasks] = useState([]);
 
@@ -37,7 +38,7 @@ const Tasks = ({labelText}) => {
             <div className="flex flex-col">
                 <label className="tasks-label">{labelText}</label>
                 <div className="mb-12">
-                    <input
+                    <Input
                         type="text"
                         className="tasks-input"
                         value={taskInputValue.task}

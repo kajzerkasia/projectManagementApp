@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import ProjectInput from "../ProjectInput/ProjectInput.jsx";
+import Input from "../Input/Input.jsx";
 import Button from "../Button/Button.jsx";
 import {INITIAL_FIELDS} from "../../constants/data.js";
 
@@ -46,7 +46,7 @@ const AddProject = ({ onSaveClick, onCancelClick }) => {
                     </Button>
                 </menu>
                 <main className="flex flex-col w-full">
-                    <ProjectInput
+                    <Input
                         labelText="title"
                         type="text"
                         value={fieldsValue.title}
@@ -54,7 +54,7 @@ const AddProject = ({ onSaveClick, onCancelClick }) => {
                             handleChange('title', event.target.value)
                         }
                     />
-                    <ProjectInput
+                    <Input
                         labelText="description"
                         type="text"
                         field="textarea"
@@ -63,7 +63,7 @@ const AddProject = ({ onSaveClick, onCancelClick }) => {
                             handleChange('description', event.target.value)
                         }
                     />
-                    <ProjectInput
+                    <Input
                         labelText="due date"
                         type="date"
                         value={fieldsValue.dueDate}

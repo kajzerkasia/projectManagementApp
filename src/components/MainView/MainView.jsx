@@ -81,3 +81,4 @@ const MainView = () => {
 
 export default MainView;
 
+// @TODO: Remove all redundant props from all components
