@@ -22,7 +22,7 @@ const MainView = () => {
     };
 
     const handleSaveClick = (newProject) => {
-        const { title, description, dueDate } = newProject;
+        const {title, description, dueDate} = newProject;
         setTabButtons((prevTabButtons) => [...prevTabButtons, title]);
         setProjects((prevProjects) => [
             ...prevProjects,
@@ -30,22 +30,41 @@ const MainView = () => {
                 title,
                 description,
                 dueDate,
+                tasks: [],
             },
         ]);
     };
 
-    const handleDeleteClick = () => {
-        if (selectedButton !== null) {
-            const updatedTabButtons = [...tabButtons];
-            const updatedProjects = [...projects];
+    const handleProjectDelete = projectIndex => {
+        setTabButtons(prevTabButtons => {
+            const updatedTabButtons = [...prevTabButtons];
+            updatedTabButtons.splice(projectIndex, 1);
+            return updatedTabButtons;
+        });
 
-            updatedTabButtons.splice(selectedButton, 1);
-            updatedProjects.splice(selectedButton, 1);
+        setProjects(prevProjects => {
+            const updatedProjects = [...prevProjects];
+            updatedProjects.splice(projectIndex, 1);
+            return updatedProjects;
+        });
 
-            setTabButtons(updatedTabButtons);
-            setProjects(updatedProjects);
-            setSelectedButton(null);
-        }
+        setSelectedButton(null);
+    };
+
+    const handleTaskAdd = (projectIndex, newTask) => {
+        setProjects((prevProjects) => {
+            const updatedProjects = [...prevProjects];
+            updatedProjects[projectIndex].tasks.push(newTask);
+            return updatedProjects;
+        });
+    };
+
+    const handleTaskDelete = (projectIndex, taskIndex) => {
+        setProjects((prevProjects) => {
+            const updatedProjects = [...prevProjects];
+            updatedProjects[projectIndex].tasks.splice(taskIndex, 1);
+            return updatedProjects;
+        });
     };
 
     return (
@@ -58,17 +77,23 @@ const MainView = () => {
                 toggleAddProject={toggleAddProject}
             />
             {addProjectIsOpen &&
-                <AddProject onSaveClick={handleSaveClick} onCancelClick={toggleAddProject} />
+                <AddProject onSaveClick={handleSaveClick} onCancelClick={toggleAddProject}/>
             }
             {!addProjectIsOpen && selectedButton !== null && selectedButton >= 0 && selectedButton < projects.length && (
                 <div className="flex flex-col w-full">
-                <Project
-                    projectName={tabButtons[selectedButton]}
-                    date={projects[selectedButton].dueDate}
-                    description={projects[selectedButton].description}
-                    onDeleteClick={handleDeleteClick}
-                />
-                    <Tasks labelText="Tasks"/>
+                    <Project
+                        projectIndex={selectedButton}
+                        projectName={tabButtons[selectedButton]}
+                        date={projects[selectedButton].dueDate}
+                        description={projects[selectedButton].description}
+                        onProjectDelete={handleProjectDelete}
+                    />
+                    <Tasks
+                        labelText="Tasks"
+                        tasks={projects[selectedButton].tasks}
+                        onTaskAdd={(newTask) => handleTaskAdd(selectedButton, newTask)}
+                        onTaskDelete={(taskIndex) => handleTaskDelete(selectedButton, taskIndex)}
+                    />
                 </div>
 
             )}
@@ -80,5 +105,3 @@ const MainView = () => {
 };
 
 export default MainView;
-
-// @TODO: Remove all redundant props from all components

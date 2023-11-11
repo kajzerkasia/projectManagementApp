@@ -4,9 +4,8 @@ import Button from "../Button/Button.jsx";
 import Task from "../Task/Task.jsx";
 import Input from "../Input/Input.jsx";
 
-const Tasks = ({ labelText }) => {
+const Tasks = ({ labelText, tasks, onTaskAdd, onTaskDelete }) => {
     const [taskInputValue, setTaskInputValue] = useState(INITIAL_TASK);
-    const [tasks, setTasks] = useState([]);
 
     const resetInputValue = () => {
         setTaskInputValue(INITIAL_TASK);
@@ -14,23 +13,19 @@ const Tasks = ({ labelText }) => {
 
     const handleAddClick = () => {
         const newTask = taskInputValue.task;
-        setTasks((prevTasks) => [...prevTasks, newTask]);
+        onTaskAdd(newTask);
         resetInputValue();
-    }
-
-    const handleDeleteClick = (index) => {
-        setTasks((prevTasks) => {
-            const updatedTasks = [...prevTasks];
-            updatedTasks.splice(index, 1);
-            return updatedTasks;
-        });
     };
 
     const handleChange = (fieldIdentifier, newValue) => {
-        setTaskInputValue(prevInputValue => ({
+        setTaskInputValue((prevInputValue) => ({
             ...prevInputValue,
-            [fieldIdentifier]: newValue
+            [fieldIdentifier]: newValue,
         }));
+    };
+
+    const handleDeleteClick = (index) => {
+        onTaskDelete(index);
     };
 
     return (
@@ -53,7 +48,7 @@ const Tasks = ({ labelText }) => {
                         Add Task
                     </Button>
                 </div>
-                <div className="">
+                <div>
                     {tasks.map((task, index) => (
                         <Task
                             key={index}
