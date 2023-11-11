@@ -1,18 +1,18 @@
 import React from 'react';
 
-const ProjectInput = ({ labelText, field, ...props}) => {
+const Input = ({ labelText, field, ...props}) => {
     return (
         <>
-            <label className="project-input-label">{labelText}</label>
+            <label className="input-label">{labelText && labelText}</label>
             {field === 'textarea' ?
                 <textarea
-                    className="project-input-and-textarea"
+                    className="input-and-textarea"
                     {...props}
                 >
                 </textarea>
                 :
                 <input
-                    className="project-input-and-textarea"
+                    className="input-and-textarea"
                     {...props}
                 />
             }
@@ -20,4 +20,4 @@ const ProjectInput = ({ labelText, field, ...props}) => {
     );
 };
 
-export default ProjectInput;
+export default Input;
