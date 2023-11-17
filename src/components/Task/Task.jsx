@@ -7,7 +7,7 @@ const Task = ({taskName, ...props}) => {
             <p>{taskName}</p>
             <Button
                 {...props}
-                className="ml-4"
+                className="ml-4 hover:text-red-500"
             >
                 Clear
             </Button>
