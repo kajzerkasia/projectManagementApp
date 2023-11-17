@@ -83,9 +83,9 @@ const MainView = () => {
     return (
         <>
             <Modal ref={modal} buttonCaption="Close">
-                <h2>Invalid Input</h2>
+                <h2 className="text-center mb-4 text-lg">Invalid Input</h2>
                 <p>You should complete all fields to add a new project.</p>
-                <p>Please make sure you provide a valid value for every input field.</p>
+                <p className="mb-4">Please make sure you provide a valid value for every input field.</p>
             </Modal>
             <div className="flex w-full h-screen">
                 <AsideMenu
