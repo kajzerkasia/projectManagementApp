@@ -4,7 +4,7 @@ import Button from "../Button/Button.jsx";
 import Task from "../Task/Task.jsx";
 import Input from "../Input/Input.jsx";
 
-const Tasks = ({ labelText, tasks, onTaskAdd, onTaskDelete }) => {
+const Tasks = ({labelText, tasks, onTaskAdd, onTaskDelete}) => {
     const [taskInputValue, setTaskInputValue] = useState(INITIAL_TASK);
 
     const resetInputValue = () => {
@@ -48,15 +48,20 @@ const Tasks = ({ labelText, tasks, onTaskAdd, onTaskDelete }) => {
                         Add Task
                     </Button>
                 </div>
-                <div>
-                    {tasks.map((task, index) => (
-                        <Task
-                            key={index}
-                            taskName={task}
-                            onClick={() => handleDeleteClick(index)}
-                        />
-                    ))}
-                </div>
+                {tasks.length === 0 &&
+                    <p className="text-darker-warm-grey">This project does not have any tasks yet.</p>
+                }
+                {tasks.length > 0 &&
+                    <div>
+                        {tasks.map((task, index) => (
+                            <Task
+                                key={index}
+                                taskName={task}
+                                onClick={() => handleDeleteClick(index)}
+                            />
+                        ))}
+                    </div>
+                }
             </div>
         </div>
     );
