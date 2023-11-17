@@ -31,3 +31,4 @@ export const AsideMenu = ({menuTitle, onClickTabButton, toggleAddProject, tabBut
 };
 
 export default AsideMenu;
+
