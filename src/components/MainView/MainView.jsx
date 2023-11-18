@@ -5,6 +5,7 @@ import NoProjectSelected from "../NoProjectSelected/NoProjectSelected.jsx";
 import Project from "../Project/Project.jsx";
 import Tasks from "../Tasks/Tasks.jsx";
 import Modal from "../Modal/Modal.jsx";
+import TabButton from "../TabButton/TabButton.jsx";
 
 const MainView = () => {
 
@@ -80,6 +81,15 @@ const MainView = () => {
         });
     };
 
+    const handleTabButtonClick = (index) => {
+
+        if (index === selectedButton) {
+            handleSelect(null);
+        } else {
+            handleSelect(index);
+        }
+    };
+
     return (
         <>
             <Modal ref={modal} buttonCaption="Close">
@@ -90,11 +100,18 @@ const MainView = () => {
             <div className="flex w-full h-screen">
                 <AsideMenu
                     menuTitle="Your projects"
-                    onClickTabButton={handleSelect}
-                    tabButtons={tabButtons}
-                    selectedButton={selectedButton}
                     toggleAddProject={toggleAddProject}
-                />
+                >
+                    {tabButtons.map((buttonTitle, index) => (
+                        <TabButton
+                            key={index}
+                            onClick={() => handleTabButtonClick(index)}
+                            active={index === selectedButton}
+                        >
+                            {buttonTitle}
+                        </TabButton>
+                    ))}
+                </AsideMenu>
                 {addProjectIsOpen &&
                     <AddProject onSaveClick={handleSaveClick} onCancelClick={toggleAddProject}/>
                 }
