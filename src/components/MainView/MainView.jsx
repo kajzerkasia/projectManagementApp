@@ -92,7 +92,7 @@ const MainView = () => {
     };
 
     const ctxValue = {
-        ontoggleAddProject: toggleAddProject,
+        onToggleAddProject: toggleAddProject,
     };
 
     return (
@@ -139,7 +139,7 @@ const MainView = () => {
 
                 )}
                 {!addProjectIsOpen && selectedButton === null && (
-                    <NoProjectSelected onCreateClick={toggleAddProject}/>
+                    <NoProjectSelected/>
                 )}
             </div>
             </ProjectContext.Provider>
