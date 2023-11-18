@@ -9,82 +9,80 @@ import TabButton from "../TabButton/TabButton.jsx";
 import {ProjectContext} from "../../store/project-management-context.jsx";
 
 const MainView = () => {
-
     const modal = useRef();
 
-    const [tabButtons, setTabButtons] = useState([]);
-    const [addProjectIsOpen, setAddProjectIsOpen] = useState(false);
-    const [projects, setProjects] = useState([]);
-    const [selectedButton, setSelectedButton] = useState(null);
+    const [mainViewState, setMainViewState] = useState({
+        tabButtons: [],
+        addProjectIsOpen: false,
+        projects: [],
+        selectedButton: null,
+    });
 
     const handleSelect = selectedButton => {
-        setSelectedButton(selectedButton);
-        setAddProjectIsOpen(false);
+        setMainViewState(prevState => ({...prevState, selectedButton, addProjectIsOpen: false}));
     };
 
     const toggleAddProject = () => {
-        setAddProjectIsOpen(isOpen => !isOpen);
+        setMainViewState(prevState => ({...prevState, addProjectIsOpen: !prevState.addProjectIsOpen}));
     };
 
     const handleSaveClick = (newProject) => {
         const {title, description, dueDate} = newProject;
 
-        if (title.trim() === '' ||
-            description.trim() === '' ||
-            dueDate.trim() === ''
-        ) {
+        if (title.trim() === '' || description.trim() === '' || dueDate.trim() === '') {
             modal.current.open();
         } else {
-
-
-            setTabButtons((prevTabButtons) => [...prevTabButtons, title]);
-            setProjects((prevProjects) => [
-                ...prevProjects,
-                {
-                    title,
-                    description,
-                    dueDate,
-                    tasks: [],
-                },
-            ]);
+            setMainViewState(prevState => ({
+                ...prevState,
+                tabButtons: [...prevState.tabButtons, title],
+                projects: [
+                    ...prevState.projects,
+                    {
+                        title,
+                        description,
+                        dueDate,
+                        tasks: [],
+                    },
+                ],
+            }));
         }
     };
 
     const handleProjectDelete = projectIndex => {
-        setTabButtons(prevTabButtons => {
-            const updatedTabButtons = [...prevTabButtons];
+        setMainViewState(prevState => {
+            const updatedTabButtons = [...prevState.tabButtons];
             updatedTabButtons.splice(projectIndex, 1);
-            return updatedTabButtons;
-        });
 
-        setProjects(prevProjects => {
-            const updatedProjects = [...prevProjects];
+            const updatedProjects = [...prevState.projects];
             updatedProjects.splice(projectIndex, 1);
-            return updatedProjects;
-        });
 
-        setSelectedButton(null);
+            return {
+                ...prevState,
+                tabButtons: updatedTabButtons,
+                projects: updatedProjects,
+                selectedButton: null,
+            };
+        });
     };
 
     const handleTaskAdd = (projectIndex, newTask) => {
-        setProjects((prevProjects) => {
-            const updatedProjects = [...prevProjects];
+        setMainViewState(prevState => {
+            const updatedProjects = [...prevState.projects];
             updatedProjects[projectIndex].tasks.push(newTask);
-            return updatedProjects;
+            return {...prevState, projects: updatedProjects};
         });
     };
 
     const handleTaskDelete = (projectIndex, taskIndex) => {
-        setProjects((prevProjects) => {
-            const updatedProjects = [...prevProjects];
+        setMainViewState(prevState => {
+            const updatedProjects = [...prevState.projects];
             updatedProjects[projectIndex].tasks.splice(taskIndex, 1);
-            return updatedProjects;
+            return {...prevState, projects: updatedProjects};
         });
     };
 
     const handleTabButtonClick = (index) => {
-
-        if (index === selectedButton) {
+        if (index === mainViewState.selectedButton) {
             handleSelect(null);
         } else {
             handleSelect(index);
@@ -103,45 +101,40 @@ const MainView = () => {
                 <p className="mb-4">Please make sure you provide a valid value for every input field.</p>
             </Modal>
             <ProjectContext.Provider value={ctxValue}>
-            <div className="flex w-full h-screen">
-                <AsideMenu
-                    menuTitle="Your projects"
-                >
-                    {tabButtons.map((buttonTitle, index) => (
-                        <TabButton
-                            key={index}
-                            onClick={() => handleTabButtonClick(index)}
-                            active={index === selectedButton}
-                        >
-                            {buttonTitle}
-                        </TabButton>
-                    ))}
-                </AsideMenu>
-                {addProjectIsOpen &&
-                    <AddProject onSaveClick={handleSaveClick}/>
-                }
-                {!addProjectIsOpen && selectedButton !== null && selectedButton >= 0 && selectedButton < projects.length && (
-                    <div className="flex flex-col w-full">
-                        <Project
-                            projectIndex={selectedButton}
-                            projectName={tabButtons[selectedButton]}
-                            date={projects[selectedButton].dueDate}
-                            description={projects[selectedButton].description}
-                            onProjectDelete={handleProjectDelete}
-                        />
-                        <Tasks
-                            labelText="Tasks"
-                            tasks={projects[selectedButton].tasks}
-                            onTaskAdd={(newTask) => handleTaskAdd(selectedButton, newTask)}
-                            onTaskDelete={(taskIndex) => handleTaskDelete(selectedButton, taskIndex)}
-                        />
-                    </div>
-
-                )}
-                {!addProjectIsOpen && selectedButton === null && (
-                    <NoProjectSelected/>
-                )}
-            </div>
+                <div className="flex w-full h-screen">
+                    <AsideMenu menuTitle="Your projects">
+                        {mainViewState.tabButtons.map((buttonTitle, index) => (
+                            <TabButton
+                                key={index}
+                                onClick={() => handleTabButtonClick(index)}
+                                active={index === mainViewState.selectedButton}
+                            >
+                                {buttonTitle}
+                            </TabButton>
+                        ))}
+                    </AsideMenu>
+                    {mainViewState.addProjectIsOpen && <AddProject onSaveClick={handleSaveClick}/>}
+                    {!mainViewState.addProjectIsOpen && mainViewState.selectedButton !== null && mainViewState.selectedButton >= 0 && mainViewState.selectedButton < mainViewState.projects.length && (
+                        <div className="flex flex-col w-full">
+                            <Project
+                                projectIndex={mainViewState.selectedButton}
+                                projectName={mainViewState.tabButtons[mainViewState.selectedButton]}
+                                date={mainViewState.projects[mainViewState.selectedButton].dueDate}
+                                description={mainViewState.projects[mainViewState.selectedButton].description}
+                                onProjectDelete={handleProjectDelete}
+                            />
+                            <Tasks
+                                labelText="Tasks"
+                                tasks={mainViewState.projects[mainViewState.selectedButton].tasks}
+                                onTaskAdd={(newTask) => handleTaskAdd(mainViewState.selectedButton, newTask)}
+                                onTaskDelete={(taskIndex) => handleTaskDelete(mainViewState.selectedButton, taskIndex)}
+                            />
+                        </div>
+                    )}
+                    {!mainViewState.addProjectIsOpen && mainViewState.selectedButton === null && (
+                        <NoProjectSelected/>
+                    )}
+                </div>
             </ProjectContext.Provider>
         </>
     );
