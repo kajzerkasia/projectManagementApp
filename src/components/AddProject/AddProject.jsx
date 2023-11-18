@@ -1,10 +1,13 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Input from "../Input/Input.jsx";
 import Button from "../Button/Button.jsx";
 import {INITIAL_FIELDS} from "../../constants/data.js";
 import Container from "../Container/Container.jsx";
+import { ProjectContext } from "../../store/project-management-context.jsx";
 
-const AddProject = ({ onSaveClick, onCancelClick }) => {
+const AddProject = ({ onSaveClick }) => {
+    const { onToggleAddProject } = useContext(ProjectContext);
+
     const [fieldsValue, setFieldsValue] = useState(INITIAL_FIELDS);
 
     const handleChange = (fieldIdentifier, newValue) => {
@@ -30,7 +33,7 @@ const AddProject = ({ onSaveClick, onCancelClick }) => {
                     <Button
                         className="add-project-cancel-button"
                         onClick={() => {
-                            onCancelClick()
+                            onToggleAddProject()
                             resetFields();
                         }}
                     >
