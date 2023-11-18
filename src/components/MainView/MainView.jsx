@@ -6,6 +6,7 @@ import Project from "../Project/Project.jsx";
 import Tasks from "../Tasks/Tasks.jsx";
 import Modal from "../Modal/Modal.jsx";
 import TabButton from "../TabButton/TabButton.jsx";
+import {ProjectContext} from "../../store/project-management-context.jsx";
 
 const MainView = () => {
 
@@ -90,6 +91,10 @@ const MainView = () => {
         }
     };
 
+    const ctxValue = {
+        ontoggleAddProject: toggleAddProject,
+    };
+
     return (
         <>
             <Modal ref={modal} buttonCaption="Close">
@@ -97,10 +102,10 @@ const MainView = () => {
                 <p>You should complete all fields to add a new project.</p>
                 <p className="mb-4">Please make sure you provide a valid value for every input field.</p>
             </Modal>
+            <ProjectContext.Provider value={ctxValue}>
             <div className="flex w-full h-screen">
                 <AsideMenu
                     menuTitle="Your projects"
-                    toggleAddProject={toggleAddProject}
                 >
                     {tabButtons.map((buttonTitle, index) => (
                         <TabButton
@@ -113,7 +118,7 @@ const MainView = () => {
                     ))}
                 </AsideMenu>
                 {addProjectIsOpen &&
-                    <AddProject onSaveClick={handleSaveClick} onCancelClick={toggleAddProject}/>
+                    <AddProject onSaveClick={handleSaveClick}/>
                 }
                 {!addProjectIsOpen && selectedButton !== null && selectedButton >= 0 && selectedButton < projects.length && (
                     <div className="flex flex-col w-full">
@@ -137,10 +142,10 @@ const MainView = () => {
                     <NoProjectSelected onCreateClick={toggleAddProject}/>
                 )}
             </div>
+            </ProjectContext.Provider>
         </>
     );
 };
 
 export default MainView;
 
-// @TODO: Rewrite all the app to typescript, change styles to more colorful ones
