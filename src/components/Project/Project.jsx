@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Button from "../Button/Button.jsx";
+import {ProjectContext} from "../../store/project-management-context.jsx";
 
-const Project = ({projectIndex, projectName, date, description, onProjectDelete}) => {
+const Project = ({projectIndex, projectName, date, description }) => {
+    const { onDeleteProject } = useContext(ProjectContext);
+
     const formattedDate = new Date(date).toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'short',
@@ -11,7 +14,7 @@ const Project = ({projectIndex, projectName, date, description, onProjectDelete}
     return (
         <div className="project-container">
             <div className="self-end pr-4">
-                <Button onClick={() => onProjectDelete(projectIndex)}>Delete</Button>
+                <Button onClick={() => onDeleteProject(projectIndex)}>Delete</Button>
             </div>
             <h1 className="project-h1">{projectName}</h1>
             <p className="project-p">{formattedDate}</p>

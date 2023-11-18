@@ -5,8 +5,8 @@ import {INITIAL_FIELDS} from "../../constants/data.js";
 import Container from "../Container/Container.jsx";
 import { ProjectContext } from "../../store/project-management-context.jsx";
 
-const AddProject = ({ onSaveClick }) => {
-    const { onToggleAddProject } = useContext(ProjectContext);
+const AddProject = () => {
+    const { onToggleAddProject, onAddProject } = useContext(ProjectContext);
 
     const [fieldsValue, setFieldsValue] = useState(INITIAL_FIELDS);
 
@@ -22,7 +22,7 @@ const AddProject = ({ onSaveClick }) => {
     };
 
     const handleSave = () => {
-        onSaveClick(fieldsValue);
+        onAddProject(fieldsValue);
     };
 
 
