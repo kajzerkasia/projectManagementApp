@@ -1,5 +1,4 @@
-import {createContext, useReducer, useRef} from 'react';
-
+import {createContext, useReducer} from 'react';
 export const ProjectContext = createContext({
     onToggleAddProject: () => {
     },
@@ -23,7 +22,7 @@ function projectManagementReducer(state, action) {
         const {title, description, dueDate} = action.payload;
 
         if (title.trim() === '' || description.trim() === '' || dueDate.trim() === '') {
-            state.modalRef.current.open();
+            state.modal.current.open();
         } else {
             return ({
                 ...state,
@@ -43,10 +42,10 @@ function projectManagementReducer(state, action) {
 
     if (action.type === 'DELETE_PROJECT') {
         const updatedTabButtons = [...state.tabButtons];
-        updatedTabButtons.splice(action.projectIndex, 1);
+        updatedTabButtons.splice(action.payload, 1);
 
         const updatedProjects = [...state.projects];
-        updatedProjects.splice(action.projectIndex, 1);
+        updatedProjects.splice(action.payload, 1);
 
         return {
             ...state,
@@ -64,48 +63,32 @@ function projectManagementReducer(state, action) {
     }
 
     if (action.type === 'ADD_TASK') {
-        const { projectIndex, newTask } = action.payload;
-
-        if (projectIndex >= 0 && projectIndex < state.projects.length) {
-            const updatedProjects = [...state.projects];
-
-            if (!updatedProjects[projectIndex].tasks) {
-                updatedProjects[projectIndex].tasks = [];
-            }
-
-            if (!updatedProjects[projectIndex].tasks.includes(newTask)) {
-                updatedProjects[projectIndex].tasks.push(newTask);
-                return { ...state, projects: updatedProjects };
-            } else {
-                return state;
-            }
-        } else {
-            console.error(`Invalid projectIndex: ${projectIndex}`);
-            return state;
-        }
+        const updatedProjects = [...state.projects];
+        updatedProjects[action.payload.projectIndex] = {
+            ...updatedProjects[action.payload.projectIndex],
+            tasks: [...updatedProjects[action.payload.projectIndex].tasks, action.payload.newTask],
+        };
+        return {
+            ...state,
+            projects: updatedProjects,
+        };
     }
 
     if (action.type === 'DELETE_TASK') {
-        const { projectIndex, taskIndex } = action.payload;
+        const updatedProjects = [...state.projects];
+        const updatedTasks = [...updatedProjects[action.payload.projectIndex].tasks];
+        updatedTasks.splice(action.payload.taskIndex, 1);
 
-        if (projectIndex >= 0 && projectIndex < state.projects.length) {
-            const project = state.projects[projectIndex];
+        updatedProjects[action.payload.projectIndex] = {
+            ...updatedProjects[action.payload.projectIndex],
+            tasks: updatedTasks,
+        };
 
-            if (taskIndex >= 0 && taskIndex < project.tasks.length) {
-                const updatedProjects = [...state.projects];
-                updatedProjects[projectIndex].tasks.splice(taskIndex, 1);
-                return { ...state, projects: updatedProjects };
-            } else {
-                console.error(`Invalid taskIndex: ${taskIndex}`);
-            }
-        } else {
-            console.error(`Invalid projectIndex: ${projectIndex}`);
-        }
-
-        return state;
+        return {
+            ...state,
+            projects: updatedProjects,
+        };
     }
-
-    // @TODO: Fix the error when deleting tasks, test the application to see if there are any more errors
 
     if (action.type === 'SELECT_BUTTON') {
         return {
@@ -134,7 +117,6 @@ function projectManagementReducer(state, action) {
 }
 
 export default function ProjectContextProvider({children}) {
-    const modalRef = useRef();
 
     const [mainViewState, mainViewDispatch] = useReducer(
         projectManagementReducer,
@@ -143,7 +125,6 @@ export default function ProjectContextProvider({children}) {
             addProjectIsOpen: false,
             projects: [],
             selectedButton: null,
-            modalRef: modalRef,
         });
 
     const handleSaveClick = (newProject) => {
