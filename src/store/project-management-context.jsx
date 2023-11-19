@@ -10,6 +10,8 @@ export const ProjectContext = createContext({
     modalIsOpen: false,
     onCloseModal: () => {
     },
+    onOpenModal: () => {
+    },
     onAddProject: () => {
     },
     onDeleteProject: () => {
@@ -133,6 +135,13 @@ function projectManagementReducer(state, action) {
         };
     }
 
+    if (action.type === 'OPEN_MODAL') {
+        return {
+            ...state,
+            modalIsOpen: true,
+        };
+    }
+
 }
 
 export default function ProjectContextProvider({children}) {
@@ -220,6 +229,14 @@ export default function ProjectContextProvider({children}) {
 
     };
 
+    const openModal = () => {
+
+        mainViewDispatch({
+            type: 'OPEN_MODAL',
+        })
+
+    };
+
     const ctxValue = {
         tabButtons: mainViewState.tabButtons,
         addProjectIsOpen: mainViewState.addProjectIsOpen,
@@ -227,6 +244,7 @@ export default function ProjectContextProvider({children}) {
         selectedButton: mainViewState.selectedButton,
         modalIsOpen: mainViewState.modalIsOpen,
         onCloseModal: closeModal,
+        onOpenModal: openModal,
         onToggleAddProject: toggleAddProject,
         onSelect: handleSelect,
         onAddProject: handleSaveClick,
