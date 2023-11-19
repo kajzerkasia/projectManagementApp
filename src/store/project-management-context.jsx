@@ -21,9 +21,11 @@ function projectManagementReducer(state, action) {
     if (action.type === 'ADD_PROJECT') {
         const {title, description, dueDate} = action.payload;
 
-        if (title.trim() === '' || description.trim() === '' || dueDate.trim() === '') {
-            state.modal.current.open();
-        } else {
+        // if (title.trim() === '' || description.trim() === '' || dueDate.trim() === '') {
+        //     modal.current.open();
+        // } else {
+        // @TODO: Use modal here correctly, fix the bug.
+
             return ({
                 ...state,
                 tabButtons: [...state.tabButtons, title],
@@ -37,7 +39,7 @@ function projectManagementReducer(state, action) {
                     },
                 ],
             });
-        }
+        // }
     }
 
     if (action.type === 'DELETE_PROJECT') {
