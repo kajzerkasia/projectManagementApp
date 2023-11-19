@@ -1,4 +1,4 @@
-import React, {useContext, useRef, useState} from 'react';
+import React, {useContext} from 'react';
 import AsideMenu from "../AsideMenu/AsideMenu.jsx";
 import AddProject from "../AddProject/AddProject.jsx";
 import NoProjectSelected from "../NoProjectSelected/NoProjectSelected.jsx";
@@ -9,13 +9,12 @@ import TabButton from "../TabButton/TabButton.jsx";
 import {ProjectContext} from "../../store/project-management-context.jsx";
 
 const MainView = () => {
-    const modal = useRef();
-    const { tabButtons, addProjectIsOpen, selectedButton, projects, onTabButtonClick, onTaskAdd, onTaskDelete} = useContext(ProjectContext);
+    const { tabButtons, addProjectIsOpen, selectedButton, projects, onTabButtonClick, onTaskAdd, onTaskDelete, modalIsOpen, onCloseModal} = useContext(ProjectContext);
 
 
     return (
         <>
-            <Modal ref={modal} buttonCaption="Close">
+            <Modal open={modalIsOpen} onClose={onCloseModal} buttonCaption="Close">
                 <h2 className="text-center mb-4 text-lg">Invalid Input</h2>
                 <p>You should complete all fields to add a new project.</p>
                 <p className="mb-4">Please make sure you provide a valid value for every input field.</p>
