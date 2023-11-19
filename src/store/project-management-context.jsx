@@ -1,4 +1,5 @@
 import {createContext, useReducer} from 'react';
+
 export const ProjectContext = createContext({
     onToggleAddProject: () => {
     },
@@ -6,14 +7,21 @@ export const ProjectContext = createContext({
     addProjectIsOpen: false,
     projects: [],
     selectedButton: null,
+    modalIsOpen: false,
+    onCloseModal: () => {
+    },
     onAddProject: () => {
     },
     onDeleteProject: () => {
     },
-    onSelect: () => {},
-    onTaskAdd: () => {},
-    onTaskDelete: () => {},
-    onTabButtonClick: () => {},
+    onSelect: () => {
+    },
+    onTaskAdd: () => {
+    },
+    onTaskDelete: () => {
+    },
+    onTabButtonClick: () => {
+    },
 });
 
 function projectManagementReducer(state, action) {
@@ -21,10 +29,12 @@ function projectManagementReducer(state, action) {
     if (action.type === 'ADD_PROJECT') {
         const {title, description, dueDate} = action.payload;
 
-        // if (title.trim() === '' || description.trim() === '' || dueDate.trim() === '') {
-        //     modal.current.open();
-        // } else {
-        // @TODO: Use modal here correctly, fix the bug.
+        if (title.trim() === '' || description.trim() === '' || dueDate.trim() === '') {
+            return {
+                ...state,
+                modalIsOpen: true,
+            };
+        } else {
 
             return ({
                 ...state,
@@ -39,7 +49,7 @@ function projectManagementReducer(state, action) {
                     },
                 ],
             });
-        // }
+        }
     }
 
     if (action.type === 'DELETE_PROJECT') {
@@ -116,6 +126,13 @@ function projectManagementReducer(state, action) {
         }
     }
 
+    if (action.type === 'CLOSE_MODAL') {
+        return {
+            ...state,
+            modalIsOpen: false,
+        };
+    }
+
 }
 
 export default function ProjectContextProvider({children}) {
@@ -127,6 +144,7 @@ export default function ProjectContextProvider({children}) {
             addProjectIsOpen: false,
             projects: [],
             selectedButton: null,
+            modalIsOpen: false,
         });
 
     const handleSaveClick = (newProject) => {
@@ -194,11 +212,21 @@ export default function ProjectContextProvider({children}) {
 
     };
 
+    const closeModal = () => {
+
+        mainViewDispatch({
+            type: 'CLOSE_MODAL',
+        })
+
+    };
+
     const ctxValue = {
         tabButtons: mainViewState.tabButtons,
         addProjectIsOpen: mainViewState.addProjectIsOpen,
         projects: mainViewState.projects,
         selectedButton: mainViewState.selectedButton,
+        modalIsOpen: mainViewState.modalIsOpen,
+        onCloseModal: closeModal,
         onToggleAddProject: toggleAddProject,
         onSelect: handleSelect,
         onAddProject: handleSaveClick,
