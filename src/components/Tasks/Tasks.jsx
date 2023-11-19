@@ -1,13 +1,14 @@
-import React, {useRef, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {INITIAL_TASK} from "../../constants/data.js";
 import Button from "../Button/Button.jsx";
 import Task from "../Task/Task.jsx";
 import Input from "../Input/Input.jsx";
 import Modal from "../Modal/Modal.jsx";
+import {ProjectContext} from "../../store/project-management-context.jsx";
 
 const Tasks = ({labelText, tasks, onTaskAdd, onTaskDelete}) => {
+    const { modalIsOpen, onCloseModal, onOpenModal } = useContext(ProjectContext);
     const [taskInputValue, setTaskInputValue] = useState(INITIAL_TASK);
-    const modal = useRef();
 
     const resetInputValue = () => {
         setTaskInputValue(INITIAL_TASK);
@@ -15,7 +16,7 @@ const Tasks = ({labelText, tasks, onTaskAdd, onTaskDelete}) => {
 
     const handleAddClick = () => {
         if (taskInputValue.task.trim() === '') {
-            modal.current.open();
+            onOpenModal();
             return;
         }
 
@@ -37,7 +38,7 @@ const Tasks = ({labelText, tasks, onTaskAdd, onTaskDelete}) => {
 
     return (
         <>
-            <Modal ref={modal} buttonCaption="Close">
+            <Modal open={modalIsOpen} onClose={onCloseModal} buttonCaption="Close">
                 <h2 className="text-center mb-4 text-lg">Invalid Input</h2>
                 <p>You should fill the input to add a new task.</p>
                 <p className="mb-4">Please make sure you provide a valid value for input field.</p>
