@@ -1,22 +1,11 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useContext, useEffect } from 'react';
 import Button from "./Button.jsx";
 import {ProjectContext} from "../store/project-management-context.jsx";
+import ProgressBar from "./ProgressBar.jsx";
 
 const TIMER = 5000;
 const ModalWarning = ({buttonCaption}) => {
-    const [remainingTime, setRemainingTime] = useState(TIMER);
-
     const {onCloseModal} = useContext(ProjectContext);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setRemainingTime(prevTime => prevTime - 10);
-        }, 10);
-
-        return () => {
-            clearInterval(interval);
-        };
-    }, []);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -28,7 +17,6 @@ const ModalWarning = ({buttonCaption}) => {
         }
     }, [onCloseModal]);
 
-
     return (
         <form method="dialog" className="modal-form">
             <h2 className="modal-h2">Invalid Input</h2>
@@ -36,7 +24,7 @@ const ModalWarning = ({buttonCaption}) => {
             <p className="mb-4">Please make sure you provide a valid value for every input field.</p>
             <div className="modal-div">
                 <Button className="modal-button" onClick={onCloseModal}>{buttonCaption}</Button>
-                <progress value={remainingTime} max={TIMER}/>
+                <ProgressBar timer={TIMER}/>
             </div>
         </form>
     );
