@@ -5,9 +5,10 @@ import Task from "../Task/Task.jsx";
 import Input from "../Input/Input.jsx";
 import Modal from "../Modal/Modal.jsx";
 import {ProjectContext} from "../../store/project-management-context.jsx";
+import ModalWarning from "../ModalWarning/ModalWarning.jsx";
 
 const Tasks = ({labelText, tasks, onTaskAdd, onTaskDelete}) => {
-    const { modalIsOpen, onCloseModal, onOpenModal } = useContext(ProjectContext);
+    const { onOpenModal, modalIsOpen } = useContext(ProjectContext);
     const [taskInputValue, setTaskInputValue] = useState(INITIAL_TASK);
 
     const resetInputValue = () => {
@@ -38,10 +39,8 @@ const Tasks = ({labelText, tasks, onTaskAdd, onTaskDelete}) => {
 
     return (
         <>
-            <Modal open={modalIsOpen} onClose={onCloseModal} buttonCaption="Close">
-                <h2 className="text-center mb-4 text-lg">Invalid Input</h2>
-                <p>You should fill the input to add a new task.</p>
-                <p className="mb-4">Please make sure you provide a valid value for input field.</p>
+            <Modal open={modalIsOpen}>
+                <ModalWarning buttonCaption="Close" />
             </Modal>
             <div className="tasks-container">
                 <div className="flex flex-col">
