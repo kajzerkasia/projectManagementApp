@@ -1,9 +1,9 @@
 import React, {useContext, useState} from 'react';
-import Input from "../Input/Input.jsx";
-import Button from "../Button/Button.jsx";
-import {INITIAL_FIELDS} from "../../constants/data.js";
-import Container from "../Container/Container.jsx";
-import { ProjectContext } from "../../store/project-management-context.jsx";
+import Input from "./Input.jsx";
+import Button from "./Button.jsx";
+import {INITIAL_FIELDS} from "../constants/data.js";
+import Container from "./Container.jsx";
+import { ProjectContext } from "../store/project-management-context.jsx";
 
 const AddProject = () => {
     const { onToggleAddProject, onAddProject } = useContext(ProjectContext);

@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useRef} from 'react';
 import { createPortal} from "react-dom";
-import {ProjectContext} from "../../store/project-management-context.jsx";
+import {ProjectContext} from "../store/project-management-context.jsx";
 
 function Modal({ open, children }) {
     const dialog = useRef();

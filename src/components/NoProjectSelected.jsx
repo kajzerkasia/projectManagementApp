@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
-import noProjectImage from '../../assets/no-projects.png';
-import Button from "../Button/Button.jsx";
-import Container from "../Container/Container.jsx";
-import {ProjectContext} from "../../store/project-management-context.jsx";
+import noProjectImage from '../assets/no-projects.png';
+import Button from "./Button.jsx";
+import Container from "./Container.jsx";
+import {ProjectContext} from "../store/project-management-context.jsx";
 
 const NoProjectSelected = () => {
     const { onToggleAddProject } = useContext(ProjectContext);

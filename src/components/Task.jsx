@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from "../Button/Button.jsx";
+import Button from "./Button.jsx";
 
 const Task = ({taskName, ...props}) => {
     return (
