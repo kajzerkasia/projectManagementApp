@@ -7,17 +7,16 @@ import Tasks from "../Tasks/Tasks.jsx";
 import Modal from "../Modal/Modal.jsx";
 import TabButton from "../TabButton/TabButton.jsx";
 import {ProjectContext} from "../../store/project-management-context.jsx";
+import ModalWarning from "../ModalWarning/ModalWarning.jsx";
 
 const MainView = () => {
-    const { tabButtons, addProjectIsOpen, selectedButton, projects, onTabButtonClick, onTaskAdd, onTaskDelete, modalIsOpen, onCloseModal} = useContext(ProjectContext);
+    const { tabButtons, addProjectIsOpen, selectedButton, projects, onTabButtonClick, onTaskAdd, onTaskDelete, modalIsOpen } = useContext(ProjectContext);
 
 
     return (
         <>
-            <Modal open={modalIsOpen} onClose={onCloseModal} buttonCaption="Close">
-                <h2 className="text-center mb-4 text-lg">Invalid Input</h2>
-                <p>You should complete all fields to add a new project.</p>
-                <p className="mb-4">Please make sure you provide a valid value for every input field.</p>
+            <Modal open={modalIsOpen}>
+                <ModalWarning buttonCaption="Close" />
             </Modal>
             <div className="flex w-full h-screen">
                 <AsideMenu menuTitle="Your projects">

@@ -1,9 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, {useContext, useEffect, useRef} from 'react';
 import { createPortal} from "react-dom";
-import Button from "../Button/Button.jsx";
+import {ProjectContext} from "../../store/project-management-context.jsx";
 
-function Modal({ open, children, onClose, buttonCaption }) {
+function Modal({ open, children }) {
     const dialog = useRef();
+
+    const { onCloseModal } = useContext(ProjectContext);
 
     useEffect(() => {
         if (open) {
@@ -13,13 +15,9 @@ function Modal({ open, children, onClose, buttonCaption }) {
         }
     }, [open]);
 
-
     return createPortal (
-        <dialog ref={dialog} className="dialog" onClose={onClose}>
-            {children}
-            <form method="dialog" className="text-center mt-4">
-                <Button className="w-20 mt-4 mx-0 py-2 bg-darker-warm-grey ml-2 rounded text-almost-white hover:bg-black hover:text-white text-base">{buttonCaption}</Button>
-            </form>
+        <dialog ref={dialog} className="dialog" onClose={onCloseModal}>
+            {open ? children : null}
         </dialog>, document.getElementById('modal-root')
     );
 }
