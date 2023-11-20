@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
-import Button from "../Button/Button.jsx";
-import {ProjectContext} from "../../store/project-management-context.jsx";
+import Button from "./Button.jsx";
+import {ProjectContext} from "../store/project-management-context.jsx";
 
 const Project = ({projectIndex, projectName, date, description }) => {
     const { onDeleteProject } = useContext(ProjectContext);

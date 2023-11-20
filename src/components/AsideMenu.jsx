@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
-import Button from "../Button/Button.jsx";
-import {ProjectContext} from "../../store/project-management-context.jsx";
+import Button from "./Button.jsx";
+import {ProjectContext} from "../store/project-management-context.jsx";
 
 export const AsideMenu = ({menuTitle, children}) => {
     const { onToggleAddProject } = useContext(ProjectContext);

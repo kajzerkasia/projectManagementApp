@@ -1,11 +1,11 @@
 import React, {useContext, useState} from 'react';
-import {INITIAL_TASK} from "../../constants/data.js";
-import Button from "../Button/Button.jsx";
-import Task from "../Task/Task.jsx";
-import Input from "../Input/Input.jsx";
-import Modal from "../Modal/Modal.jsx";
-import {ProjectContext} from "../../store/project-management-context.jsx";
-import ModalWarning from "../ModalWarning/ModalWarning.jsx";
+import {INITIAL_TASK} from "../constants/data.js";
+import Button from "./Button.jsx";
+import Task from "./Task.jsx";
+import Input from "./Input.jsx";
+import Modal from "./Modal.jsx";
+import {ProjectContext} from "../store/project-management-context.jsx";
+import ModalWarning from "./ModalWarning.jsx";
 
 const Tasks = ({labelText, tasks, onTaskAdd, onTaskDelete}) => {
     const { onOpenModal, modalIsOpen } = useContext(ProjectContext);

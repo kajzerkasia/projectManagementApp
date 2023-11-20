@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
-import Button from "../Button/Button.jsx";
-import {ProjectContext} from "../../store/project-management-context.jsx";
+import Button from "./Button.jsx";
+import {ProjectContext} from "../store/project-management-context.jsx";
 
 const TIMER = 5000;
 const ModalWarning = ({buttonCaption}) => {

@@ -1,13 +1,13 @@
 import React, {useContext} from 'react';
-import AsideMenu from "../AsideMenu/AsideMenu.jsx";
-import AddProject from "../AddProject/AddProject.jsx";
-import NoProjectSelected from "../NoProjectSelected/NoProjectSelected.jsx";
-import Project from "../Project/Project.jsx";
-import Tasks from "../Tasks/Tasks.jsx";
-import Modal from "../Modal/Modal.jsx";
-import TabButton from "../TabButton/TabButton.jsx";
-import {ProjectContext} from "../../store/project-management-context.jsx";
-import ModalWarning from "../ModalWarning/ModalWarning.jsx";
+import AsideMenu from "./AsideMenu.jsx";
+import AddProject from "./AddProject.jsx";
+import NoProjectSelected from "./NoProjectSelected.jsx";
+import Project from "./Project.jsx";
+import Tasks from "./Tasks.jsx";
+import Modal from "./Modal.jsx";
+import TabButton from "./TabButton.jsx";
+import {ProjectContext} from "../store/project-management-context.jsx";
+import ModalWarning from "./ModalWarning.jsx";
 
 const MainView = () => {
     const { tabButtons, addProjectIsOpen, selectedButton, projects, onTabButtonClick, onTaskAdd, onTaskDelete, modalIsOpen } = useContext(ProjectContext);

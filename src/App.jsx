@@ -1,4 +1,4 @@
-import MainView from "./components/MainView/MainView.jsx";
+import MainView from "./components/MainView.jsx";
 import ProjectContextProvider from "./store/project-management-context.jsx";
 
 function App() {
